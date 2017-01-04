@@ -11,4 +11,11 @@ module.exports = {
     SPECIAL: 'special',
     NO_PROJECT: 'noProject',
   },
+  red: {
+    WHEN: 'Date',
+    TASK_CODE: 'Task Code',
+    ID: 'JIRA Number',
+    TITLE: 'Task Description',
+    TIME_SPENT: 'Hours',
+  },
 };

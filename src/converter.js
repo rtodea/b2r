@@ -22,8 +22,29 @@ function split(tickets, options = {}) {
 }
 
 
-function convert() {
-  // TODO: implement this
+function convert(blueTicket) {
+  const redTicket = {};
+
+  const commonConstantNames = [
+    'WHEN',
+    'TIME_SPENT',
+    'TITLE',
+    'ID',
+  ];
+  const blueColumnNames = R.pick(commonConstantNames, constants.blue);
+  const redColumnNames = constants.red;
+  R.toPairs(blueColumnNames).forEach(([k, v]) => {
+    redTicket[redColumnNames[k]] = blueTicket[v];
+  });
+
+  redTicket[redColumnNames.WHEN] = convertDateToRedFormat(redTicket[redColumnNames.WHEN]);
+  return redTicket;
+}
+
+
+function convertDateToRedFormat(someDateString) {
+  // e.g. 2016-12-19 14:18:00
+  return someDateString.split(' ')[0];
 }
 
 
