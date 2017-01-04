@@ -1,0 +1,35 @@
+{
+  "name": "b2r",
+  "version": "0.0.1",
+  "description": "Let's imagine the following scenario.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtodea/b2r.git"
+  },
+  "keywords": [
+    "csv"
+  ],
+  "author": "rtodea",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rtodea/b2r/issues"
+  },
+  "homepage": "https://github.com/rtodea/b2r#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-subset": "^1.4.0",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-mocha": "^4.8.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "csv-parse": "^1.1.7"
+  }
+}
