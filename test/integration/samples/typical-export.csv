@@ -1,0 +1,17 @@
+﻿Project,Issue Type,Key,Summary,Priority,"Billing - Project",Date Started,Username,Display Name,Time Spent (h),Work Description
+"ALG Resources",Task,ARES-41,"Meetings and Estimations","Medium","",2016-12-20 12:30:00,robert.todea,"Robert Todea",0.5,"Employee Profile Picture PR presentation"
+"ALG Resources",Task,ARES-41,"Meetings and Estimations","Medium","",2016-12-20 17:23:00,robert.todea,"Robert Todea",1,"Sprint Review, Retrospective, Scrum"
+"ALG Resources",Story,ARES-423,"Tech Support - Robert Todea","Medium","",2016-12-21 09:44:00,robert.todea,"Robert Todea",1.5,"* India team discussion regarding sending periodic emails
+* workers app overview presentation"
+"ALG Resources",Story,ARES-423,"Tech Support - Robert Todea","Medium","",2016-12-23 15:18:00,robert.todea,"Robert Todea",1.5,""
+"ALG Resources",Sub-task,ARES-483,"Smart redirection mechanism in Resources","Medium","",2016-12-19 14:18:00,robert.todea,"Robert Todea",4,""
+"ALG Resources",Task,ARES-496,"Enhance Docker images with HIVE_CLIENT_ID/HIVE_CLIENT_SECRET","Medium","",2016-12-21 07:40:00,robert.todea,"Robert Todea",1.5,""
+"ALG Resources",Task,ARES-496,"Enhance Docker images with HIVE_CLIENT_ID/HIVE_CLIENT_SECRET","Medium","",2016-12-22 07:42:00,robert.todea,"Robert Todea",4,""
+"ALG Resources",Task,ARES-496,"Enhance Docker images with HIVE_CLIENT_ID/HIVE_CLIENT_SECRET","Medium","",2016-12-23 16:48:00,robert.todea,"Robert Todea",6.5,""
+"ALG Resources",Task,ARES-518,"Sprint planning meeting - ExpressYourElf","Medium","",2016-12-20 18:02:00,robert.todea,"Robert Todea",1,""
+"ALG Resources",Sub-task,ARES-519,"Fix latest issues found in QA environment","Medium","",2016-12-19 18:16:00,robert.todea,"Robert Todea",4,""
+"ALG Resources",Sub-task,ARES-519,"Fix latest issues found in QA environment","Medium","",2016-12-20 12:06:00,robert.todea,"Robert Todea",4.5,""
+"ALG Resources",Sub-task,ARES-519,"Fix latest issues found in QA environment","Medium","",2016-12-21 06:40:00,robert.todea,"Robert Todea",1,""
+"ALG Resources",Sub-task,ARES-519,"Fix latest issues found in QA environment","Medium","",2016-12-22 07:41:00,robert.todea,"Robert Todea",4,"* improved validators in this section using shared (backend-frontend) validators"
+"Fleet Status",Story,STAT-312,"Estimate latest enhancements ","Medium","",2016-12-20 18:03:00,robert.todea,"Robert Todea",1,""
+Total,,,,,,,,,36,
