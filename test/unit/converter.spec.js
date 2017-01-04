@@ -62,7 +62,7 @@ describe('converter.convert', () => {
     expect(sut(typicalTicket)).to.eql({
       Date: '2016-12-19',
       'Task Code': 'RSCR-WEB',
-      'JIRA Number': 'ARES-483',
+      'Jira Number': 'ARES-483',
       'Task Description': 'Smart redirection mechanism in Resources',
       Hours: '4',
     });

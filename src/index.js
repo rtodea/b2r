@@ -4,10 +4,11 @@ const R = require('ramda');
 const packageInfo = require('../package.json');
 const csv = require('./csv');
 const converter = require('./converter');
+const constants = require('./constants');
 
 
 function run(csvFilePath) {
-  const blueTickets = csv.read(csvFilePath);
+  const blueTickets = csv.read(csvFilePath).slice(0, -1);
   const blueTicketsByBlueProjectType = converter.split(blueTickets);
   const redTicketsByBlueProjectType = R.map(
     (tickets) => (tickets.map(converter.convert)), blueTicketsByBlueProjectType);
@@ -17,7 +18,7 @@ function run(csvFilePath) {
     .filter(([k, v]) => (v.length > 0))
     .forEach(([k, v]) => {
       const fileName = createFileName(k);
-      csv.write(v, fileName);
+      csv.write(v, fileName, R.values(constants.red));
       generatedFiles.push(fileName);
     });
 
@@ -54,7 +55,10 @@ function setup() {
 
 if (require.main === module) {
   const csvFilePath = setup();
-  run(csvFilePath);
+  const generatedFiles = run(csvFilePath);
+  console.log('Generated the following files:');
+  console.log(generatedFiles.join('\n'));
+  console.log();
 }
 
 

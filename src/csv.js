@@ -9,8 +9,8 @@ function read(fileName) {
 }
 
 
-function write(tickets, fileName) {
-  const csvContent = json2csv({ data: tickets });
+function write(tickets, fileName, fields) {
+  const csvContent = json2csv({ data: tickets, fields });
   fs.writeFileSync(fileName, csvContent);
 }
 

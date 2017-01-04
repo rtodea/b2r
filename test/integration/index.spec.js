@@ -23,7 +23,7 @@ describe('index', () => {
     });
 
     it('should work', () => {
-      expect(generatedFiles).to.have.lengthOf(3);
+      expect(generatedFiles).to.have.lengthOf(2);
     });
   });
 });

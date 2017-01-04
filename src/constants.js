@@ -14,7 +14,7 @@ module.exports = {
   red: {
     WHEN: 'Date',
     TASK_CODE: 'Task Code',
-    ID: 'JIRA Number',
+    ID: 'Jira Number',
     TITLE: 'Task Description',
     TIME_SPENT: 'Hours',
   },
