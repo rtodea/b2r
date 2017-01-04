@@ -30,13 +30,13 @@ describe('converter.split', () => {
 
   it('should group tickets by project name', () => {
     const tickets = [
-      { Project: 'P1' },
-      { 'Billing - Project': 'P2', Project: 'P1' },
-      { Project: 'P1', Key: '1' },
+      { Project: 'ALG HUD' },
+      { 'Billing - Project': 'ALG Resources', Project: 'ALG HUD' },
+      { Project: 'ALG HUD', Key: '1' },
     ];
     expect(sut(tickets, { special: ['1'] })).to.eql({
-      P1: [tickets[0]],
-      P2: [tickets[1]],
+      HUD: [tickets[0]],
+      ARES: [tickets[1]],
       special: [tickets[2]],
     });
   });
@@ -65,6 +65,28 @@ describe('converter.convert', () => {
       'JIRA Number': 'ARES-483',
       'Task Description': 'Smart redirection mechanism in Resources',
       Hours: '4',
+    });
+  });
+});
+
+describe('converter.toRedProjectTypes', () => {
+  const sut = converter.toRedProjectTypes;
+
+  it('should not remap the special cases', () => {
+    expect(sut({
+      noProject: [],
+      special: [],
+    })).to.eql({
+      noProject: [],
+      special: [],
+    });
+  });
+
+  it('should remap the blue types to red types', () => {
+    expect(sut({
+      ARES: [],
+    })).to.eql({
+      RSCR: [],
     });
   });
 });

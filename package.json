@@ -1,9 +1,10 @@
 {
   "name": "b2r",
   "version": "0.0.1",
-  "description": "Let's imagine the following scenario.",
-  "main": "index.js",
+  "description": "Red CSV generator from Blue CSV",
+  "main": "src/index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,7 +31,9 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "commander": "^2.9.0",
     "csv-parse": "^1.1.7",
+    "json2csv": "^3.7.3",
     "ramda": "^0.23.0"
   }
 }

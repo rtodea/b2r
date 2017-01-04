@@ -1,10 +1,11 @@
+const fs = require('fs');
 const chai = require('chai');
 const chaiSubset = require('chai-subset');
 
 chai.use(chaiSubset);
 const expect = chai.expect;
 
-const sut = require('../../src/csv');
+const csv = require('../../src/csv');
 
 
 describe('csv', () => {
@@ -13,7 +14,7 @@ describe('csv', () => {
       let parsedData;
       before(() => {
         const filePath = './test/integration/samples/typical-export.csv';
-        parsedData = sut.read(filePath);
+        parsedData = csv.read(filePath);
       });
 
       it('should have correct number of rows', () => {
@@ -41,5 +42,27 @@ describe('csv', () => {
     });
   });
 
-  describe('write', () => {});
+  describe('write', () => {
+    const toBeExported = [{
+      firstColumn: 'firstValue',
+      secondColumn: 'secondValue',
+    }];
+
+    const sut = csv.write;
+    const outputFile = 'some-file.csv';
+
+    afterEach(() => {
+      fs.unlinkSync(outputFile);
+    });
+
+    it('should create a file with the correct contents', () => {
+      sut(toBeExported, outputFile);
+      const parsedData = csv.read(outputFile);
+      expect(parsedData).to.have.lengthOf(1);
+      expect(parsedData[0]).to.eql({
+        firstColumn: 'firstValue',
+        secondColumn: 'secondValue',
+      });
+    });
+  });
 });

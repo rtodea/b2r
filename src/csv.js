@@ -1,5 +1,6 @@
 const fs = require('fs');
 const parse = require('csv-parse/lib/sync');
+const json2csv = require('json2csv');
 
 
 function read(fileName) {
@@ -8,8 +9,9 @@ function read(fileName) {
 }
 
 
-function write(data, fileName) {
-
+function write(tickets, fileName) {
+  const csvContent = json2csv({ data: tickets });
+  fs.writeFileSync(fileName, csvContent);
 }
 
 
