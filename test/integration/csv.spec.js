@@ -24,6 +24,7 @@ describe('csv', () => {
         const relevantKeys = [
           'Key',
           'Summary',
+          'Project',
           'Billing - Project',
           'Date Started',
           'Time Spent (h)',
