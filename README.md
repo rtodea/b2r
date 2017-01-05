@@ -1,5 +1,27 @@
-# b2r
-# Blue to Red
+# b2r (Blue -> Red)
+## Usage
+
+### Install
+
+    npm install
+
+### Run
+
+  1. Download Blue data into a CSV file (e.g. `exportData.csv`)
+  2. Run
+  
+          npm start exportData.csv
+
+  3. Sample output
+  
+          Generated the following files:
+          RSCR.csv
+          FLTSTA.csv
+  4. Create a timesheet for each CSV table
+  5. Copy the entries from the CSV table
+    
+
+## Description
 
 Let's imagine the following scenario.
 
