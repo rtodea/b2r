@@ -17,5 +17,6 @@ module.exports = {
     ID: 'Jira Number',
     TITLE: 'Task Description',
     TIME_SPENT: 'Hours',
+    TIMESHEET: 'Related Timesheet',
   },
 };

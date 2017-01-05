@@ -92,8 +92,21 @@ function toRedProjectTypes(ticketsGroupedByBlueProjectTypes) {
 }
 
 
+function generateRedTicketsWithTimesheetInfo(redTicketsByRedProjectTypes, redProjectToTimesheet) {
+  const tickets = [];
+  R.toPairs(redTicketsByRedProjectTypes)
+    .forEach(([project, ticketsInProject]) => {
+      const timesheet = redProjectToTimesheet[project];
+      const ticketsWithTimesheet = ticketsInProject.map(R.assoc(constants.red.TIMESHEET, timesheet));
+      tickets.push(...ticketsWithTimesheet);
+    });
+  return tickets;
+}
+
+
 module.exports = {
   split,
   convert,
   toRedProjectTypes,
+  generateRedTicketsWithTimesheetInfo,
 };

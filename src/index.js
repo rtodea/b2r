@@ -1,4 +1,5 @@
 const program = require('commander');
+const fs = require('fs');
 const R = require('ramda');
 
 const packageInfo = require('../package.json');
@@ -7,38 +8,34 @@ const converter = require('./converter');
 const constants = require('./constants');
 
 
-function run(csvFilePath) {
+function run(csvFilePath, timesheetJsonPath) {
   const blueTickets = csv.read(csvFilePath).slice(0, -1);
   const blueTicketsByBlueProjectType = converter.split(blueTickets);
   const redTicketsByBlueProjectType = R.map(
     (tickets) => (tickets.map(converter.convert)), blueTicketsByBlueProjectType);
   const redTicketsByRedProjectTypes = converter.toRedProjectTypes(redTicketsByBlueProjectType);
-  const generatedFiles = [];
-  R.toPairs(redTicketsByRedProjectTypes)
-    .filter(([k, v]) => (v.length > 0))
-    .forEach(([k, v]) => {
-      const fileName = createFileName(k);
-      csv.write(v, fileName, R.values(constants.red));
-      generatedFiles.push(fileName);
-    });
+  const timesheetMap = JSON.parse(fs.readFileSync(timesheetJsonPath, 'utf8'));
+  const redTickets = converter.generateRedTicketsWithTimesheetInfo(redTicketsByRedProjectTypes, timesheetMap);
 
-  return generatedFiles;
-}
+  const generatedFile = 'time-entries.csv';
+  csv.write(redTickets, generatedFile, R.values(constants.red));
 
-
-function createFileName(base) {
-  return `${base}.csv`;
+  return generatedFile;
 }
 
 
 function setup() {
   let csvFile = null;
+  let timesheetMap = null;
 
   program
     .version(packageInfo.version)
     .description(packageInfo.description)
-    .arguments('<exportedCsvFile> ')
-    .action((exportedCsvFile) => { csvFile = exportedCsvFile; })
+    .arguments('<exportedCsvFile> <timesheetMapJsonFile>')
+    .action((exportedCsvFile, timesheetMapJsonFile) => {
+      csvFile = exportedCsvFile;
+      timesheetMap = timesheetMapJsonFile;
+    })
     .parse(process.argv);
 
 
@@ -49,16 +46,14 @@ function setup() {
     console.log('');
   });
 
-  return csvFile;
+  return [csvFile, timesheetMap];
 }
 
 
 if (require.main === module) {
-  const csvFilePath = setup();
-  const generatedFiles = run(csvFilePath);
-  console.log('Generated the following files:');
-  console.log(generatedFiles.join('\n'));
-  console.log();
+  const [csvFilePath, jsonFilePath] = setup();
+  const generatedFile = run(csvFilePath, jsonFilePath);
+  console.log('Generated', generatedFile);
 }
 
 
