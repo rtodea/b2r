@@ -106,6 +106,6 @@ describe('converter.generateRedTicketsWithTimesheetInfo', () => {
   const sut = converter.generateRedTicketsWithTimesheetInfo;
 
   it('should add timesheet info to tickets', () => {
-    expect(sut({ RSCR: [{}] }, { RSCR: 1001 })).to.eql([{ 'Related Timesheet': 1001 }]);
+    expect(sut({ RSCR: [{}] }, { 'Resource Mgmt & Optimization': 1001 })).to.eql([{ 'Related Timesheet': 1001 }]);
   });
 });

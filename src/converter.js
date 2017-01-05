@@ -4,6 +4,7 @@ const constants = require('./constants');
 const blueToRedProjectPrefixes = require('../db/blue-to-red-project.json');
 const projectNameToTaskCodeId = require('../db/red-task-code-name-to-id.json');
 const blueProjectPrefixes = require('../db/blue-project-name-to-prefix.json');
+const redPrefixToProjectName = require('../db/red-prefix-to-project-name.json');
 
 
 function getBlueProject(ticket, specialTickets = []) {
@@ -96,7 +97,7 @@ function generateRedTicketsWithTimesheetInfo(redTicketsByRedProjectTypes, redPro
   const tickets = [];
   R.toPairs(redTicketsByRedProjectTypes)
     .forEach(([project, ticketsInProject]) => {
-      const timesheet = redProjectToTimesheet[project];
+      const timesheet = redProjectToTimesheet[redPrefixToProjectName[project]];
       const ticketsWithTimesheet = ticketsInProject.map(R.assoc(constants.red.TIMESHEET, timesheet));
       tickets.push(...ticketsWithTimesheet);
     });

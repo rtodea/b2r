@@ -53,7 +53,7 @@ describe('index', () => {
           }),
           R.uniq
         )(rows);
-        expect(timesheetIds).to.containSubset(['1001', '1002']);
+        expect(timesheetIds).to.containSubset(['1004', '1006']);
       });
     });
   });

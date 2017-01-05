@@ -7,18 +7,19 @@
 
 ### Run
 
-  1. Download Blue data into a CSV file (e.g. `exportData.csv`)
-  2. Run
+  1. Download Blue data into a CSV file for the time interval(e.g. `exportData.csv`)
+  1. Create a Red timesheet for possible project
+  1. If not created, create `timesheet-info.json` with the mapping between Red project and timesheet ID.
+          
+          cp sample-timesheet-info.json timesheet-info.json
+          
+  1. Edit the entries from `timesheet-info.json` with values from Red app
   
-          npm start exportData.csv
+  1. Run
+  
+          npm start exportData.csv timesheet-info.json
 
-  3. Sample output
-  
-          Generated the following files:
-          RSCR.csv
-          FLTSTA.csv
-  4. Create a timesheet for each CSV table
-  5. Copy the entries from the CSV table
+  1. Import `time-entries.csv` the entries into Red app
     
 
 ## Description
