@@ -22,8 +22,21 @@ describe('index', () => {
       });
     });
 
-    it('should work', () => {
+    it('should generate 2 files', () => {
       expect(generatedFiles).to.have.lengthOf(2);
+      expect(generatedFiles[0]).to.eql('RSCR.csv');
+      expect(generatedFiles[1]).to.eql('FLTSTA.csv');
+    });
+
+    it('should have the correct order of the columns', () => {
+      const generatedContent = fs.readFileSync(generatedFiles[0]).toString();
+      expect(generatedContent.split('\n')[0].split(',')).to.eql([
+        '"Date"',
+        '"Task Code"',
+        '"Jira Number"',
+        '"Task Description"',
+        '"Hours"',
+      ]);
     });
   });
 });

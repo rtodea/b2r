@@ -52,8 +52,9 @@ function convert(blueTicket) {
 
 
 function convertDateToRedFormat(someDateString) {
-  // e.g. 2016-12-19 14:18:00
-  return someDateString.split(' ')[0];
+  // e.g. from 2016-12-19 14:18:00 to 12-19-2016
+  const d = (new Date(someDateString));
+  return `${d.getMonth() + 1}-${d.getDate()}-${d.getFullYear()}`;
 }
 
 
