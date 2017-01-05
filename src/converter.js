@@ -1,4 +1,5 @@
 const R = require('ramda');
+
 const constants = require('./constants');
 const projectMappings = require('../db/blue-to-red-project.json');
 const blueProjectPrefixes = require('../db/blue-project-name-to-prefix.json');
@@ -26,7 +27,15 @@ function split(tickets, options = {}) {
     return {};
   }
 
-  return R.groupBy((ticket) => (getBlueProject(ticket, options.special)), tickets);
+  return R.pipe(
+    R.groupBy((ticket) => (getBlueProject(ticket, options.special))),
+    R.map(
+      R.sort(
+        (first, second) => (
+          new Date(first[constants.blue.WHEN]) - new Date(second[constants.blue.WHEN]))
+      )
+    )
+  )(tickets);
 }
 
 

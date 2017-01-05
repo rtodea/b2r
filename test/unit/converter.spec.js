@@ -40,6 +40,17 @@ describe('converter.split', () => {
       special: [tickets[2]],
     });
   });
+
+  it('should sort the tickets in a group by date', () => {
+    const tickets = [
+      { Project: 'ALG HUD', 'Date Started': '2016-12-20 14:18:00' },
+      { Project: 'ALG HUD', 'Date Started': '2016-12-19 14:18:00' },
+      { Project: 'ALG HUD', 'Date Started': '2016-12-18 14:18:00' },
+    ];
+    expect(sut(tickets)).to.eql({
+      HUD: tickets.reverse(),
+    });
+  });
 });
 
 describe('converter.convert', () => {
