@@ -13,7 +13,7 @@ module.exports = {
   },
   red: {
     WHEN: 'Date',
-    TASK_CODE: 'Task Code',
+    TASK_CODE: 'Task Code ID',
     ID: 'Jira Number',
     TITLE: 'Task Description',
     TIME_SPENT: 'Hours',

@@ -32,7 +32,7 @@ describe('index', () => {
       const generatedContent = fs.readFileSync(generatedFiles[0]).toString();
       expect(generatedContent.split('\n')[0].split(',')).to.eql([
         '"Date"',
-        '"Task Code"',
+        '"Task Code ID"',
         '"Jira Number"',
         '"Task Description"',
         '"Hours"',

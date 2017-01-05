@@ -1,7 +1,8 @@
 const R = require('ramda');
 
 const constants = require('./constants');
-const projectMappings = require('../db/blue-to-red-project.json');
+const blueToRedProjectPrefixes = require('../db/blue-to-red-project.json');
+const projectNameToTaskCodeId = require('../db/red-task-code-name-to-id.json');
 const blueProjectPrefixes = require('../db/blue-project-name-to-prefix.json');
 
 
@@ -69,9 +70,9 @@ function convertDateToRedFormat(someDateString) {
 
 function getRedTaskCode(blueTicket) {
   const blueProjectPrefix = getBlueProjectPrefix(blueTicket);
-  const redProjectPrefix = projectMappings[blueProjectPrefix];
+  const redProjectPrefix = blueToRedProjectPrefixes[blueProjectPrefix];
 
-  return `${redProjectPrefix}-WEB`;
+  return projectNameToTaskCodeId[`${redProjectPrefix}-WEB`];
 }
 
 
@@ -83,7 +84,7 @@ function toRedProjectTypes(ticketsGroupedByBlueProjectTypes) {
     if (specialGroups.includes(k)) {
       newMapping[k] = v;
     } else {
-      newMapping[projectMappings[k]] = v;
+      newMapping[blueToRedProjectPrefixes[k]] = v;
     }
   });
 
