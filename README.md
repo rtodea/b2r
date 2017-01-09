@@ -3,7 +3,7 @@
 
 ### Install
 
-    npm install
+    npm install / yarn install
 
 ### Run
 
@@ -18,6 +18,7 @@
   1. Run
   
           npm start exportData.csv timesheet-info.json
+          yarn start exportData.csv timesheet-info.json
 
   1. Import `time-entries.csv` the entries into Red app
     
