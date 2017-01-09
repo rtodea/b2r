@@ -34,7 +34,7 @@ function split(tickets, options = {}) {
     R.map(
       R.sort(
         (first, second) => (
-          new Date(first[constants.blue.WHEN]) - new Date(second[constants.blue.WHEN]))
+        new Date(first[constants.blue.WHEN]) - new Date(second[constants.blue.WHEN]))
       )
     )
   )(tickets);
