@@ -41,3 +41,4 @@ jspm_packages
 # Generated output
 time-entries.csv
 timesheet-info.json
+exportData.csv
