@@ -1,34 +1,27 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
-const index = require('./index');
 const path = require('path');
+
+const index = require('./../index');
+const redPrefixToProjectName = require('../../db/red-prefix-to-project-name.json');
 
 const app = express();
 app.use(fileUpload());
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
 app.post('/', (req, res) => {
-  const hud = req.body.hud,
-    cp = req.body.cp,
-    fisar = req.body.fisar,
-    fsus = req.body.fsus,
-    fstrat = req.body.fstrat,
-    rsrc = req.body.rsrc,
-    user = req.body.user,
-    file = req.files.jira;
+  const user = req.body.user;
+  const file = req.files.jira;
 
-  const timesheetInfo = {
-    "ALG HUD": parseInt(hud) || 0,
-    "Costpoint Integration": parseInt(cp) || 0,
-    "FISAR": parseInt(fisar) || 0,
-    "Fleet Status": parseInt(fsus) || 0,
-    "Fleet Strategy": parseInt(fstrat) || 0,
-    "Resource Mgmt & Optimization": parseInt(rsrc) || 0
-  };
+  const timesheetInfo = {};
+  Object.keys(redPrefixToProjectName).forEach((prefix) => {
+    const projName = redPrefixToProjectName[prefix];
+    timesheetInfo[projName] = parseInt(req.body[prefix]) || 0;
+  });
 
   fs.writeFileSync('./timesheet-info.json', JSON.stringify(timesheetInfo), 'utf-8');
 
@@ -45,5 +38,5 @@ app.post('/', (req, res) => {
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log('Endpoint started on port ' + port);
+  console.log(`Endpoint started on port ${port}`);
 });

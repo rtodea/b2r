@@ -15,14 +15,14 @@ describe('converter.split', () => {
   });
 
   it('should handle special tickets when provided', () => {
-    const tickets = [{Key: '1'}];
-    expect(sut(tickets, {special: ['1']})).to.eql({
+    const tickets = [{ Key: '1' }];
+    expect(sut(tickets, { special: ['1'] })).to.eql({
       special: tickets,
     });
   });
 
   it('should put tickets that have empty values in "Project" or "Billing - Project" into no project grouping', () => {
-    const tickets = [{Project: ''}, {'Billing - Project': ''}, {}];
+    const tickets = [{ Project: '' }, { 'Billing - Project': '' }, {}];
     expect(sut(tickets)).to.eql({
       noProject: tickets,
     });
@@ -30,11 +30,11 @@ describe('converter.split', () => {
 
   it('should group tickets by project name', () => {
     const tickets = [
-      {Project: 'ALG HUD'},
-      {'Billing - Project': 'ALG Resources', Project: 'ALG HUD'},
-      {Project: 'ALG HUD', Key: '1'},
+      { Project: 'ALG HUD' },
+      { 'Billing - Project': 'ALG Resources', Project: 'ALG HUD' },
+      { Project: 'ALG HUD', Key: '1' },
     ];
-    expect(sut(tickets, {special: ['1']})).to.eql({
+    expect(sut(tickets, { special: ['1'] })).to.eql({
       HUD: [tickets[0]],
       ARES: [tickets[1]],
       special: [tickets[2]],
@@ -43,9 +43,9 @@ describe('converter.split', () => {
 
   it('should sort the tickets in a group by date', () => {
     const tickets = [
-      {Project: 'ALG HUD', 'Date Started': '2016-12-20 14:18:00'},
-      {Project: 'ALG HUD', 'Date Started': '2016-12-19 14:18:00'},
-      {Project: 'ALG HUD', 'Date Started': '2016-12-18 14:18:00'},
+      { Project: 'ALG HUD', 'Date Started': '2016-12-20 14:18:00' },
+      { Project: 'ALG HUD', 'Date Started': '2016-12-19 14:18:00' },
+      { Project: 'ALG HUD', 'Date Started': '2016-12-18 14:18:00' },
     ];
     expect(sut(tickets)).to.eql({
       HUD: tickets.reverse(),
@@ -106,6 +106,6 @@ describe('converter.generateRedTicketsWithTimesheetInfo', () => {
   const sut = converter.generateRedTicketsWithTimesheetInfo;
 
   it('should add timesheet info to tickets', () => {
-    expect(sut({RSCR: [{}]}, {'Resource Mgmt & Optimization': 1001})).to.eql([{'Related Timesheet': 1001}]);
+    expect(sut({ RSCR: [{}] }, { 'Resource Mgmt & Optimization': 1001 })).to.eql([{ 'Related Timesheet': 1001 }]);
   });
 });
