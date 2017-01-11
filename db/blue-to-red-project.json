@@ -4,5 +4,6 @@
   "FISH": "FISAR",
   "FSTRAT": "FLTSTR",
   "STAT": "FLTSTA",
-  "HUD": "ALGHUD"
+  "HUD": "ALGHUD",
+  "FA": "FLTSTA"
 }

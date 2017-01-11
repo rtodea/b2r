@@ -63,18 +63,6 @@ You would not want to forget some work hours, use wrong task codes, etc.
 Leaving aside a similar analysis to [_Is it worth the time_](https://xkcd.com/1205/)
 we would like to automate the transition process.
 
-## Requirements
-
-Input:
-
-1. credentials for the Blue app
-1. credentials for the Red app
-1. interval (start and end date)
-
-Output:
-
-1. timesheets created in Red app
-
 ## Breakdown
 
 ### Blue app
@@ -107,17 +95,28 @@ _Edit timesheet_ form contains a _Time Entries_ table:
 * Task Description --- ticket title
 * Hours
 
-## Implementation Steps
+## FAQ
 
-1. Manually export from Blue the CSV report into `exportData.csv`
-1. Split `exportData.csv` into per billing project entries
-    1. what happens when some tickets lack the "Billing - Project" field?
-        1. generate `no-billing.csv` file
-    1. some are known to apply to different project regardless of the one assigned
-        1. `special-tickets-in.csv` file for those must be provided
-        1. `special-tickets-out.csv` file will be generated with the correct entries
-1. For each billing project create a CSV report with the Red columns
-1. Import the CSV into Red
+1. What happens when some tickets lack the "Billing - Project" field?
+    1. To identify the project we use the following fields:
+       
+        1. `Billing - Project`
+        1. `Project`
+       
+       If none was found the add `NO_PROJECT` and hope for the best.
+
+1. Some are known to apply to different project regardless of the one assigned
+    We need to think more about it.
+    
+    Some ideas:
+
+    1. `special-tickets-in.csv` file for those must be provided
+    1. `special-tickets-out.csv` file will be generated with the correct entries
+
+1. How can we automatically import the CSV into Red app?
+
+    If we lacked the `import` button we could explore the following:
+    
     1. use a web driver to put the correct entries (e.g. [`webdriver.io`](http://webdriver.io/))
     1. use a [`*.user.js`](https://github.com/OpenUserJs/OpenUserJS.org/wiki/Userscript-beginners-HOWTO) 
     triggered by [`Tampermonkey`](https://github.com/OpenUserJs/OpenUserJS.org/wiki/Tampermonkey-for-Chrome)

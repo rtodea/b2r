@@ -78,6 +78,30 @@ describe('converter.convert', () => {
       Hours: '4',
     });
   });
+
+  it('should know how to map FA tickets', () => {
+    const faTicket = {
+      Project: 'Fleet Apps 2.0',
+      'Issue Type': 'Task',
+      Key: 'FA-87',
+      Summary: 'Update TRAX mocking application to support RQL-like syntax',
+      Priority: 'Medium',
+      'Billing - Project': '',
+      'Date Started': '2016-12-20 15:13:00',
+      Username: 'vlad.vidac',
+      'Display Name': 'Vlad Vidac',
+      'Time Spent (h)': '4',
+      'Work Description': '',
+    };
+
+    expect(sut(faTicket)).to.eql({
+      Date: '12-20-2016',
+      'Task Code ID': '224',
+      'Jira Number': 'FA-87',
+      'Task Description': 'Update TRAX mocking application to support RQL-like syntax',
+      Hours: '4',
+    });
+  });
 });
 
 describe('converter.toRedProjectTypes', () => {
