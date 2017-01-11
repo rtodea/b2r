@@ -8,11 +8,11 @@ const converter = require('./converter');
 const constants = require('./constants');
 
 
-function run(csvFilePath, timesheetJsonPath) {
+function run(csvFilePath, timesheetJsonPath, userType) {
   const blueTickets = csv.read(csvFilePath).slice(0, -1);
   const blueTicketsByBlueProjectType = converter.split(blueTickets);
   const redTicketsByBlueProjectType = R.map(
-    (tickets) => (tickets.map(converter.convert)), blueTicketsByBlueProjectType);
+    (tickets) => (tickets.map((input) => converter.convert(input, userType))), blueTicketsByBlueProjectType);
   const redTicketsByRedProjectTypes = converter.toRedProjectTypes(redTicketsByBlueProjectType);
   const timesheetMap = JSON.parse(fs.readFileSync(timesheetJsonPath, 'utf8'));
   const redTickets = converter.generateRedTicketsWithTimesheetInfo(redTicketsByRedProjectTypes, timesheetMap);

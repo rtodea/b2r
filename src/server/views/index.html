@@ -1,0 +1,44 @@
+<form action="/" method="post" id="data" encType="multipart/form-data"></form>
+<table>
+    <tr>
+        <td>ALG HUD:</td>
+        <td><input type="number" name="ALGHUD" form="data"/></td>
+    </tr>
+    <tr>
+        <td>Costpoint Integration:</td>
+        <td><input type="number" name="COSTP" form="data"/></td>
+    </tr>
+    <tr>
+        <td>FISAR:</td>
+        <td><input type="number" name="FISAR" form="data"/></td>
+    </tr>
+    <tr>
+        <td>Fleet Status:</td>
+        <td><input type="number" name="FLTSTA" form="data"/></td>
+    </tr>
+    <tr>
+        <td>Fleet Strategy:</td>
+        <td><input type="number" name="FLTSTR" form="data"/></td>
+    </tr>
+    <tr>
+        <td>Resource Mgmt & Optimization:</td>
+        <td><input type="number" name="RSCR" form="data"/></td>
+    </tr>
+    <tr>
+        <td>User type:</td>
+        <td><select name="user" form="data">
+            <option value="select" selected>Select...</option>
+            <option value="WEB">WEB</option>
+            <option value="QA">QA</option>
+            <option value="PMO">PMO</option>
+            <option value="DEVOPS">DEVOPS</option>
+        </select></td>
+    </tr>
+    <tr>
+        <td>JIRA CSV export:</td>
+        <td>
+            <input type="file" name="jira" accept=".csv" form="data">
+        </td>
+    </tr>
+</table>
+<button type="submit" form="data">Download</button>

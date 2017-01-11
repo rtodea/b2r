@@ -34,14 +34,14 @@ function split(tickets, options = {}) {
     R.map(
       R.sort(
         (first, second) => (
-          new Date(first[constants.blue.WHEN]) - new Date(second[constants.blue.WHEN]))
+        new Date(first[constants.blue.WHEN]) - new Date(second[constants.blue.WHEN]))
       )
     )
   )(tickets);
 }
 
 
-function convert(blueTicket) {
+function convert(blueTicket, userType) {
   const redTicket = {};
 
   const commonConstantNames = [
@@ -57,7 +57,7 @@ function convert(blueTicket) {
   });
 
   redTicket[redColumnNames.WHEN] = convertDateToRedFormat(redTicket[redColumnNames.WHEN]);
-  redTicket[redColumnNames.TASK_CODE] = getRedTaskCode(blueTicket);
+  redTicket[redColumnNames.TASK_CODE] = getRedTaskCode(blueTicket, userType);
   return redTicket;
 }
 
@@ -69,11 +69,11 @@ function convertDateToRedFormat(someDateString) {
 }
 
 
-function getRedTaskCode(blueTicket) {
+function getRedTaskCode(blueTicket, userType) {
   const blueProjectPrefix = getBlueProjectPrefix(blueTicket);
   const redProjectPrefix = blueToRedProjectPrefixes[blueProjectPrefix];
 
-  return projectNameToTaskCodeId[`${redProjectPrefix}-WEB`];
+  return projectNameToTaskCodeId[`${redProjectPrefix}-${userType || 'WEB'}`];
 }
 
 
