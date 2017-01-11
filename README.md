@@ -9,6 +9,20 @@
 
   1. Download Blue data into a CSV file for the time interval(e.g. `exportData.csv`)
   1. Create a Red timesheet for possible project
+  
+#### Web Interface
+  1. Start web server
+      
+          npm start
+          
+  1. Access server at [`http://localhost:3000`](`http://localhost:3000`)
+  1. Set the timesheet id's to the affected projects
+  1. Set User type (e.g. `WEB` for developer)
+  1. Upload `exportData.csv`
+  1. Click `Download` button and save `time-entries.csv`
+  1. Import `time-entries.csv` the entries into Red app
+
+#### Command Line Interface  
   1. If not created, create `timesheet-info.json` with the mapping between Red project and timesheet ID.
           
           cp sample-timesheet-info.json timesheet-info.json
@@ -17,8 +31,8 @@
   
   1. Run
   
-          npm start exportData.csv timesheet-info.json
-          yarn start exportData.csv timesheet-info.json
+          npm run convert exportData.csv timesheet-info.json
+          yarn run convert exportData.csv timesheet-info.json
 
   1. Import `time-entries.csv` the entries into Red app
     
